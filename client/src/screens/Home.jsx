@@ -17,7 +17,6 @@ const Home = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           setData(data);
         });
     }
@@ -36,7 +35,20 @@ const Home = () => {
     })();
   }, []);
 
-  const img = require("../../assets/bg/bg1.jpg");
+  let img = ""
+
+  if (data.current) {
+    if (data.current.weather[0].main === "Clear") {
+      img = require("../../assets/bg/clear2.jpg");
+    } else if (data.current.weather[0].main === "Clouds") {
+      img = require("../../assets/bg/cloud.jpg");
+    } else if (data.current.weather[0].main === "Rain") {
+      img = require("../../assets/bg/rain2.jpg");
+    } else if (data.current.weather[0].main === "Thunderstorm") {
+      img = require("../../assets/bg/Thunderstorm3.jpg");
+    }
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={img} style={styles.backgroundImage}>
