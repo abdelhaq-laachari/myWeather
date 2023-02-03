@@ -69,9 +69,8 @@ const login = asyncHandler(async (req, res) => {
 // @access  Private
 
 const getUsers = asyncHandler(async (req, res) => {
-  res.status(201).json({
-    message: "All users",
-  });
+  const users = await User.find({});
+  res.json(users);
 });
 
 // Generate JWT
